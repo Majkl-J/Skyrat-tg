@@ -119,9 +119,10 @@ Various overrides necessary to get the persocom working, namely ui status, power
 	return data
 
 /obj/item/modular_computer/pda/synth/proc/handle_eye_check(var/obj/item/organ/internal/eyes/synth/eyes, removing)
-	if(isnull(src.owner))
+	var/obj/item/organ/internal/brain/synth/brain = src
+	if(isnull(brain.owner))
 		attached_eyes = null
-	if(!is_type(eyes))
+	if(!istype(eyes))
 		return
 	else if(removing)
 		attached_eyes = null
