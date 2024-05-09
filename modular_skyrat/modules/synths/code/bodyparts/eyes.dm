@@ -5,12 +5,19 @@
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 
+	// Eyelight for the synth internal PDA.
+	var/obj/item/flashlight/pen/eye
+
+/obj/item/organ/internal/eyes/synth/Initialize(mapload)
+	. = ..()
+	if(!.)
+		return .
+	eye = new /obj/item/flashlight/pen(src)
+
 /obj/item/organ/internal/eyes/synth/emp_act(severity)
 	. = ..()
-
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-
 	switch(severity)
 		if(EMP_HEAVY)
 			to_chat(owner, span_warning("Alert:Severe electromagnetic interference clouds your optics with static. Error Code: I-CS6"))
@@ -18,6 +25,10 @@
 		if(EMP_LIGHT)
 			to_chat(owner, span_warning("Alert: Mild interference clouds your optics with static. Error Code: I-CS0"))
 			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
+
+
+
+
 
 /datum/design/synth_eyes
 	name = "Optical Sensors"

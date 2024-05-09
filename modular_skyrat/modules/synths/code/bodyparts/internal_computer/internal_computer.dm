@@ -11,6 +11,9 @@
 
 	max_capacity = 64
 
+	///Attached synth eyes variable. Used for handling of glowing lights in said eyes, and their color
+	var/obj/item/organ/internal/eyes/synth/attached_eyes
+
 /obj/item/modular_computer/pda/synth/Initialize(mapload)
 	. = ..()
 
@@ -114,3 +117,21 @@ Various overrides necessary to get the persocom working, namely ui status, power
 				data["PC_batteryicon"] = "batt_5.gif"
 		data["PC_batterypercent"] = "[round(charge_level)]%"
 	return data
+
+/obj/item/modular_computer/pda/synth/proc/handle_eye_check(var/obj/item/organ/internal/eyes/synth/eyes, removing)
+	if(isnull(src.owner))
+		attached_eyes = null
+	if(!is_type(eyes))
+		return
+	else if(removing)
+		attached_eyes = null
+	else
+
+
+// Overrides stuff with our custom light eyes behaviour
+/obj/item/modular_computer/pda/synth/toggle_flashlight(mob/user)
+
+
+// Cool light eyes!
+/obj/item/modular_computer/pda/synth/set_flashlight_color(color)
+
