@@ -17,4 +17,9 @@
 
 #define PREFERENCE_SUBCATEGORY_UNCATEGORIZED "Uncategorized"
 
+// Appearance menu
 #define PREFERENCE_SUBCATEGORY_GENITALS "Genitals"
+
+// Lore menu
+#define PREFERENCE_SUBCATEGORY_ERP "ERP"
+#define PREFERENCE_SUBCATEGORY_FLAVOR_TEXT "Flavor Text"

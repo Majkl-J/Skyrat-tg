@@ -130,6 +130,8 @@
 
 /datum/preference/choiced/erp_status
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	subcategory = PREFERENCE_SUBCATEGORY_ERP
+
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref"
 
@@ -180,6 +182,8 @@
 
 /datum/preference/choiced/erp_status_nc
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	subcategory = PREFERENCE_SUBCATEGORY_ERP
+
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref_nc"
 
@@ -210,6 +214,8 @@
 
 /datum/preference/choiced/erp_status_v
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	subcategory = PREFERENCE_SUBCATEGORY_ERP
+
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref_v"
 
@@ -240,6 +246,8 @@
 
 /datum/preference/choiced/erp_status_mechanics
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	subcategory = PREFERENCE_SUBCATEGORY_ERP
+
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref_mechanics"
 
@@ -300,6 +308,8 @@
 
 /datum/preference/choiced/erp_status_hypno
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	subcategory = PREFERENCE_SUBCATEGORY_ERP
+
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "erp_status_pref_hypnosis"
 
