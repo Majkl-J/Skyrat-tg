@@ -14,3 +14,7 @@
 #define ORGAN_PREF_POSI_BRAIN "Positronic Brain"
 #define ORGAN_PREF_MMI_BRAIN "Man-Machine Interface"
 #define ORGAN_PREF_CIRCUIT_BRAIN "Circuitboard"
+
+#define PREFERENCE_SUBCATEGORY_UNCATEGORIZED "Uncategorized"
+
+#define PREFERENCE_SUBCATEGORY_GENITALS "Genitals"

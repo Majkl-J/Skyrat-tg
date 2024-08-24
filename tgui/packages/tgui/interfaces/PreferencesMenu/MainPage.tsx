@@ -37,7 +37,7 @@ import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
 import { useRandomToggleState } from './useRandomToggleState';
 
 const CLOTHING_CELL_SIZE = 48;
-const CLOTHING_SIDEBAR_ROWS = 13.4; // SKYRAT EDIT CHANGE - ORIGINAL:  9
+const CLOTHING_SIDEBAR_ROWS = 13; // SKYRAT EDIT CHANGE - ORIGINAL:  9
 
 const CLOTHING_SELECTION_CELL_SIZE = 48;
 const CLOTHING_SELECTION_WIDTH = 5.4;
@@ -586,7 +586,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                   randomBodyEnabled,
                 )}
                 preferences={nonContextualPreferences}
-                maxHeight="auto"
+                maxHeight="100%"
               />
             );
             break;
@@ -620,7 +620,9 @@ export const MainPage = (props: { openSpecies: () => void }) => {
               />
             )}
 
-            <Stack height={`${CLOTHING_SIDEBAR_ROWS * CLOTHING_CELL_SIZE}px`}>
+            <Stack
+              height={`${CLOTHING_SIDEBAR_ROWS * CLOTHING_CELL_SIZE - 24}px`}
+            >
               <Stack.Item>
                 <Stack vertical fill>
                   <Stack.Item>
@@ -644,11 +646,23 @@ export const MainPage = (props: { openSpecies: () => void }) => {
 
                   <Stack.Item grow>
                     <CharacterPreview
-                      height="80%" // SKYRAT EDIT - ORIGINAL: height="100%"
+                      height="100%" // SKYRAT EDIT - ORIGINAL: height="100%"
                       id={data.character_preview_view}
                     />
                   </Stack.Item>
-
+                  <Stack.Item>
+                    <Button
+                      color="red"
+                      disabled={
+                        Object.values(data.character_profiles).filter(
+                          (name) => name,
+                        ).length < 2
+                      } // check if existing chars more than one
+                      onClick={() => setDeleteCharacterPopupOpen(true)}
+                    >
+                      Delete Character
+                    </Button>
+                  </Stack.Item>
                   <Stack.Item
                     // SKYRAT EDIT ADDITION
                     position="relative"
@@ -680,7 +694,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                 </Stack>
               </Stack.Item>
 
-              <Stack.Item width={`${CLOTHING_CELL_SIZE * 2 + 15}px`}>
+              <Stack.Item width={`${CLOTHING_CELL_SIZE + 15}px`}>
                 <Stack height="100%" vertical wrap>
                   {mainFeatures.map(([clothingKey, clothing]) => {
                     const catalog =
@@ -729,19 +743,6 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                     >
                       Character Visuals
                     </PageButton>
-                    <Box my={0.5}>
-                      <Button
-                        color="red"
-                        disabled={
-                          Object.values(data.character_profiles).filter(
-                            (name) => name,
-                          ).length < 2
-                        } // check if existing chars more than one
-                        onClick={() => setDeleteCharacterPopupOpen(true)}
-                      >
-                        Delete Character
-                      </Button>
-                    </Box>
                   </Stack.Item>
                   <Stack.Item grow>
                     <PageButton

@@ -403,8 +403,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/data = preference.compile_ui_data(user, value)
 
 		LAZYINITLIST(preferences[preference.category])
+		// SKYRAT EDIT BEGIN - Subcategories for secondary features
+		if(preference.category == PREFERENCE_CATEGORY_SECONDARY_FEATURES || preference.category == PREFERENCE_CATEGORY_NON_CONTEXTUAL)
+			LAZYINITLIST(preferences[preference.category][preference.subcategory])
+			preferences[preference.category][preference.subcategory][preference.savefile_key] = data
+			continue
+		// SKYRAT EDIT END
 		preferences[preference.category][preference.savefile_key] = data
-
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/list/append_character_preferences = preference_middleware.get_character_preferences(user)

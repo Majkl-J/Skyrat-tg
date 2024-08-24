@@ -20,6 +20,7 @@
 
 /datum/preference/choiced/genital
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	subcategory = PREFERENCE_SUBCATEGORY_GENITALS
 	savefile_identifier = PREFERENCE_CHARACTER
 	abstract_type = /datum/preference/choiced/genital
 

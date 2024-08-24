@@ -2,8 +2,10 @@
 
 /datum/preference
 	/// The subcategory of preference, for use by the PreferencesMenu.
-	/// Basically to make our prefs much more organized
-	var/subcategory
+	/// Only useful when using PREFERENCE_CATEGORY_SECONDARY_FEATURES and PREFERENCE_CATEGORY_NON_CONTEXTUAL
+	/// Basically to make our main prefs much more organized
+	/// PREFERENCE_SUBCATEGORY_UNCATEGORIZED means this will not be organized and instead appear directly at the top. This needs to be a string
+	var/subcategory = PREFERENCE_SUBCATEGORY_UNCATEGORIZED
 
 /datum/preference/tri_color
 	abstract_type = /datum/preference/tri_color

@@ -187,11 +187,14 @@ export type PreferencesMenuData = {
     clothing: Record<string, string>;
     features: Record<string, string>;
     game_preferences: Record<string, unknown>;
-    non_contextual: {
-      random_body: RandomSetting;
-      [otherKey: string]: unknown;
-    };
-    secondary_features: Record<string, unknown>;
+    non_contextual: Record<
+      string,
+      {
+        random_body: RandomSetting;
+        [otherKey: string]: unknown;
+      }
+    >;
+    secondary_features: Record<string, Record<string, unknown>>;
     supplemental_features: Record<string, unknown>;
     manually_rendered_features: Record<string, string>;
 
