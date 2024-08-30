@@ -404,7 +404,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		LAZYINITLIST(preferences[preference.category])
 		// SKYRAT EDIT BEGIN - Subcategories for secondary features
-		if(preference.category == PREFERENCE_CATEGORY_SECONDARY_FEATURES || preference.category == PREFERENCE_CATEGORY_NON_CONTEXTUAL || preference.category == PREFERENCE_CATEGORY_MANUALLY_RENDERED)
+		if(preference.category == PREFERENCE_CATEGORY_SECONDARY_FEATURES || preference.category == PREFERENCE_CATEGORY_NON_CONTEXTUAL)
 			LAZYINITLIST(preferences[preference.category][preference.subcategory])
 			preferences[preference.category][preference.subcategory][preference.savefile_key] = data
 			continue

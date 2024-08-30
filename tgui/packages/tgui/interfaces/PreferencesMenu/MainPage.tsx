@@ -399,6 +399,7 @@ export const PreferenceList = (props: {
   preferences: Record<string, unknown>;
   randomizations: Record<string, RandomSetting>;
   maxHeight: string;
+  categorize?: boolean; // Whether or not to categorize stuff
   children?: ReactNode;
 }) => {
   return (
@@ -414,49 +415,61 @@ export const PreferenceList = (props: {
       maxHeight={props.maxHeight}
     >
       <LabeledList>
-        {sortPreferences(Object.entries(props.preferences)).map(
-          ([featureId, value]) => {
-            const feature = features[featureId];
-            const randomSetting = props.randomizations[featureId];
+        {(props.categorize
+          ? Object.entries(props.preferences)
+          : [['default', Object.entries(props.preferences)]]
+        ).map(([catId, catData]) => {
+          return (
+            <Stack.Item key={catId}>
+              {sortPreferences(Object.entries(catData)).map(
+                ([featureId, value]) => {
+                  const feature = features[featureId];
+                  const randomSetting = props.randomizations[featureId];
 
-            if (feature === undefined) {
-              return (
-                <Stack.Item key={featureId}>
-                  <b>Feature {featureId} is not recognized.</b>
-                </Stack.Item>
-              );
-            }
+                  if (feature === undefined) {
+                    return (
+                      <Stack.Item key={featureId}>
+                        <b>Feature {featureId} is not recognized.</b>
+                      </Stack.Item>
+                    );
+                  }
 
-            return (
-              <LabeledList.Item
-                key={featureId}
-                label={feature.name}
-                tooltip={feature.description}
-                verticalAlign="middle"
-              >
-                <Stack fill>
-                  {randomSetting && (
-                    <Stack.Item>
-                      <RandomizationButton
-                        setValue={createSetRandomization(props.act, featureId)}
-                        value={randomSetting}
-                      />
-                    </Stack.Item>
-                  )}
+                  return (
+                    <LabeledList.Item
+                      key={featureId}
+                      label={feature.name}
+                      tooltip={feature.description}
+                      verticalAlign="middle"
+                    >
+                      <Stack fill>
+                        {randomSetting && (
+                          <Stack.Item>
+                            <RandomizationButton
+                              setValue={createSetRandomization(
+                                props.act,
+                                featureId,
+                              )}
+                              value={randomSetting}
+                            />
+                          </Stack.Item>
+                        )}
 
-                  <Stack.Item grow>
-                    <FeatureValueInput
-                      act={props.act}
-                      feature={feature}
-                      featureId={featureId}
-                      value={value}
-                    />
-                  </Stack.Item>
-                </Stack>
-              </LabeledList.Item>
-            );
-          },
-        )}
+                        <Stack.Item grow>
+                          <FeatureValueInput
+                            act={props.act}
+                            feature={feature}
+                            featureId={featureId}
+                            value={value}
+                          />
+                        </Stack.Item>
+                      </Stack>
+                    </LabeledList.Item>
+                  );
+                },
+              )}
+            </Stack.Item>
+          );
+        })}
       </LabeledList>
 
       {props.children}
@@ -573,6 +586,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                 )}
                 preferences={contextualPreferences}
                 maxHeight="auto"
+                categorize
               />
             );
             break;
@@ -587,6 +601,7 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                 )}
                 preferences={nonContextualPreferences}
                 maxHeight="100%"
+                categorize
               />
             );
             break;
