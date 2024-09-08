@@ -80,12 +80,9 @@
 	/// Should we give feedback messages?
 	var/show_visible_message = TRUE
 
-<<<<<<< HEAD
 	/// Can it be silent?
 	var/can_be_silent = FALSE //SKYRAT EDIT ADDITION - THIEVING GLOVES
 
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 /// Gets the item from the given source.
 /datum/strippable_item/proc/get_item(atom/source)
 

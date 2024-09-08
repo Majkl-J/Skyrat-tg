@@ -165,10 +165,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		var/elements_to_add = max_elements - elements.len
 		for(var/i in 1 to elements_to_add) //Create all elements
 			var/atom/movable/screen/radial/slice/new_element = new /atom/movable/screen/radial/slice
-<<<<<<< HEAD
 			new_element.icon = icon_path //SKYRAT EDIT ADDITION - GUNPOINT
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 			new_element.tooltips = use_tooltips
 			new_element.set_parent(src)
 			elements += new_element
