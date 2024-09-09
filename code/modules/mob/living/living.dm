@@ -69,18 +69,13 @@
 	if(istype(potential_spine))
 		damage_softening_multiplier *= potential_spine.athletics_boost_multiplier
 
-<<<<<<< HEAD
 	//SKYRAT EDIT ADDITION START - Landing in liquids
 	if(impacted_turf.liquids && impacted_turf.liquids.liquid_state >= LIQUID_STATE_WAIST)
 		Knockdown(2 SECONDS)
 		return
 	//SKYRAT EDIT ADDITION END
 	// If you are incapped, you probably can't brace yourself
-	var/can_help_themselves = !incapacitated(IGNORE_RESTRAINTS)
-=======
-	// If you are incapped, you probably can't brace yourself
 	var/can_help_themselves = !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	if(levels <= 1 && can_help_themselves)
 		var/obj/item/organ/external/wings/gliders = get_organ_by_type(/obj/item/organ/external/wings)
 		if(HAS_TRAIT(src, TRAIT_FREERUNNING) || gliders?.can_soften_fall()) // the power of parkour or wings allows falling short distances unscathed
@@ -590,25 +585,6 @@
 	investigate_log("has succumbed to death.", INVESTIGATE_DEATHS)
 	death()
 
-<<<<<<< HEAD
-/**
- * Checks if a mob is incapacitated
- *
- * Normally being restrained, agressively grabbed, or in stasis counts as incapacitated
- * unless there is a flag being used to check if it's ignored
- *
- * args:
- * * flags (optional) bitflags that determine if special situations are exempt from being considered incapacitated
- *
- * bitflags: (see code/__DEFINES/status_effects.dm)
- * * IGNORE_RESTRAINTS - mob in a restraint (handcuffs) is not considered incapacitated
- * * IGNORE_STASIS - mob in stasis (stasis bed, etc.) is not considered incapacitated
- * * IGNORE_GRAB - mob that is agressively grabbed is not considered incapacitated
-**/
-/mob/living/incapacitated(flags)
-	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
-		return TRUE
-=======
 // Remember, anything that influences this needs to call update_incapacitated somehow when it changes
 // Most often best done in [code/modules/mob/living/init_signals.dm]
 /mob/living/build_incapacitated(flags)
@@ -624,7 +600,6 @@
 		incap_status |= INCAPABLE_STASIS
 
 	return incap_status
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	if(!(flags & IGNORE_RESTRAINTS) && HAS_TRAIT(src, TRAIT_RESTRAINED))
 		return TRUE
@@ -752,13 +727,8 @@
 			if(!silent)
 				to_chat(src, span_notice("You will now stand up as soon as you are able to."))
 		else
-<<<<<<< HEAD
 			/*if(!silent) SKYRAT EDIT REMOVAL
 				to_chat(src, "<span class='notice'>You stand up.</span>")*/
-=======
-			if(!silent)
-				to_chat(src, span_notice("You stand up."))
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 			get_up(instant)
 
 	SEND_SIGNAL(src, COMSIG_LIVING_RESTING, new_resting, silent, instant)
@@ -768,10 +738,7 @@
 /// Proc to append and redefine behavior to the change of the [/mob/living/var/resting] variable.
 /mob/living/proc/update_resting()
 	update_rest_hud_icon()
-<<<<<<< HEAD
 	SEND_SIGNAL(src, COMSIG_LIVING_UPDATED_RESTING, resting) //SKYRAT EDIT ADDITION - GUNPOINT
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 
 /mob/living/proc/get_up(instant = FALSE)
