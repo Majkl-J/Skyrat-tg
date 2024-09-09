@@ -22,7 +22,6 @@
 /// Someone, for the love of god, profile this.  Is there a reason to cache mutable_appearance
 /// if so, why are we JUST doing the airlocks when we can put this in mutable_appearance.dm for
 /// everything
-<<<<<<< HEAD
 /proc/get_airlock_overlay(icon_state, icon_file, atom/offset_spokesman, em_block, state_color = null) // SKYRAT EDIT - Airlock accent greyscale color support - Added `state_color = null`
 	var/static/list/airlock_overlays = list()
 
@@ -38,14 +37,6 @@
 		. = airlock_overlays[base_icon_key] = airlock_overlay
 		// SKYRAT EDIT END
 
-=======
-/proc/get_airlock_overlay(icon_state, icon_file, atom/offset_spokesman, em_block)
-	var/static/list/airlock_overlays = list()
-
-	var/base_icon_key = "[icon_state][REF(icon_file)]"
-	if(!(. = airlock_overlays[base_icon_key]))
-		. = airlock_overlays[base_icon_key] = mutable_appearance(icon_file, icon_state)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	if(isnull(em_block))
 		return
 
@@ -70,16 +61,6 @@
 #define AIRLOCK_FRAME_OPEN "open"
 #define AIRLOCK_FRAME_OPENING "opening"
 
-<<<<<<< HEAD
-#define AIRLOCK_SECURITY_NONE 0 //Normal airlock //Wires are not secured
-#define AIRLOCK_SECURITY_IRON 1 //Medium security airlock //There is a simple iron plate over wires (use welder)
-#define AIRLOCK_SECURITY_PLASTEEL_I_S 2 //Sliced inner plating (use crowbar), jumps to 0
-#define AIRLOCK_SECURITY_PLASTEEL_I 3 //Removed outer plating, second layer here (use welder)
-#define AIRLOCK_SECURITY_PLASTEEL_O_S 4 //Sliced outer plating (use crowbar)
-#define AIRLOCK_SECURITY_PLASTEEL_O 5 //There is first layer of plasteel (use welder)
-#define AIRLOCK_SECURITY_PLASTEEL 6 //Max security airlock //Fully secured wires (use wirecutters to remove grille, that is electrified)
-
-=======
 #define AIRLOCK_FRAME_CLOSED "closed"
 #define AIRLOCK_FRAME_CLOSING "closing"
 #define AIRLOCK_FRAME_OPEN "open"
@@ -93,7 +74,6 @@
 #define AIRLOCK_SECURITY_PLASTEEL_O 5 //There is first layer of plasteel (use welder)
 #define AIRLOCK_SECURITY_PLASTEEL 6 //Max security airlock //Fully secured wires (use wirecutters to remove grille, that is electrified)
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 #define AIRLOCK_INTEGRITY_N  300 // Normal airlock integrity
 #define AIRLOCK_INTEGRITY_MULTIPLIER 1.5 // How much reinforced doors health increases
 /// How much extra health airlocks get when braced with a seal
@@ -106,11 +86,8 @@
 #define DOOR_CLOSE_WAIT 60 /// Time before a door closes, if not overridden
 
 #define DOOR_VISION_DISTANCE 11 ///The maximum distance a door will see out to
-<<<<<<< HEAD
 */
 // SKYRAT EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /obj/machinery/door/airlock
 	name = "Airlock"
@@ -175,15 +152,9 @@
 	var/previous_airlock = /obj/structure/door_assembly
 	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
 	var/airlock_material
-<<<<<<< HEAD
 	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	/// Used for papers and photos pinned to the airlock
 	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi'//OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
-=======
-	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
-	/// Used for papers and photos pinned to the airlock
-	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	/// Airlock pump that overrides airlock controlls when set up for cycling
 	var/obj/machinery/atmospherics/components/unary/airlock_pump/cycle_pump
@@ -560,10 +531,7 @@
 		if(AIRLOCK_DENY, AIRLOCK_OPENING, AIRLOCK_CLOSING, AIRLOCK_EMAG)
 			icon_state = "nonexistenticonstate" //MADNESS
 
-<<<<<<< HEAD
 /* SKYRAT EDIT MOVED TO AIRLOCK.DM IN AESTHETICS MODULE
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 /obj/machinery/door/airlock/update_overlays()
 	. = ..()
 
@@ -642,10 +610,7 @@
 					floorlight.pixel_x = -32
 					floorlight.pixel_y = 0
 			. += floorlight
-<<<<<<< HEAD
 */
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /obj/machinery/door/airlock/run_animation(animation)
 	switch(animation)
@@ -885,12 +850,8 @@
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
 				H.visible_message(span_danger("[user] headbutts the airlock."), \
 									span_userdanger("You headbutt the airlock!"))
-<<<<<<< HEAD
 				//H.Paralyze(100) - SKYRAT EDIT REMOVAL - COMBAT
 				H.StaminaKnockdown(10, TRUE, TRUE)
-=======
-				H.Paralyze(100)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 				H.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
 			else
 				visible_message(span_danger("[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet."))
@@ -1362,12 +1323,8 @@
 			return TRUE
 
 		if(BYPASS_DOOR_CHECKS) // No power usage, special sound, get it open.
-<<<<<<< HEAD
 			//playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE) - ORIGINAL
 			playsound(src, forcedOpen, 30, TRUE) //SKYRAT EDIT CHANGE - AESTHETICS
-=======
-			playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 			return TRUE
 
 		else
@@ -1627,14 +1584,8 @@
 
 	if(!disassembled)
 		A?.update_integrity(A.max_integrity * 0.5)
-<<<<<<< HEAD
-	else if(obj_flags & EMAGGED)
-		//no electronics nothing
-	else
-=======
 
 	else if(!(obj_flags & EMAGGED))
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		var/obj/item/electronics/airlock/ae
 		if(!electronics)
 			ae = new/obj/item/electronics/airlock(loc)
@@ -1730,11 +1681,7 @@
 	data["wires"] = wire
 	return data
 
-<<<<<<< HEAD
-/obj/machinery/door/airlock/ui_act(action, params)
-=======
 /obj/machinery/door/airlock/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	. = ..()
 	if(.)
 		return
@@ -1858,8 +1805,6 @@
 /obj/machinery/door/airlock/proc/get_wires()
 	var/area/source_area = get_area(src)
 	return source_area?.airlock_wires ? new source_area.airlock_wires(src) : new /datum/wires/airlock(src)
-<<<<<<< HEAD
-=======
 
 /obj/structure/fluff/airlock_filler/Destroy(force)
 	filled_airlock = null
@@ -2584,7 +2529,6 @@
 	set_density(TRUE)
 	operating = FALSE
 	return TRUE
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /obj/structure/fluff/airlock_filler/Destroy(force)
 	filled_airlock = null
@@ -3335,8 +3279,5 @@
 #undef AIRLOCK_FRAME_CLOSING
 #undef AIRLOCK_FRAME_OPEN
 #undef AIRLOCK_FRAME_OPENING
-<<<<<<< HEAD
 */
 // SKYRAT EDIT REMOVAL END - moved to code/__DEFINES/~skyrat_defines/airlock.dm
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3

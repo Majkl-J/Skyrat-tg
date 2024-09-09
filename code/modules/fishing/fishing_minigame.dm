@@ -1,27 +1,10 @@
-<<<<<<< HEAD
-// Lure bobbing
-=======
 // float bobbing
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 #define WAIT_PHASE 1
 // Click now to start tgui part
 #define BITING_PHASE 2
 // UI minigame phase
 #define MINIGAME_PHASE 3
 
-<<<<<<< HEAD
-/// The height of the minigame slider. Not in pixels, but minigame units.
-#define FISHING_MINIGAME_AREA 1000
-/// Any lower than this, and the target position of the fish is considered null
-#define FISH_TARGET_MIN_DISTANCE 6
-/// The friction applied to fish jumps, so that it decelerates over time
-#define FISH_FRICTION_MULT 0.9
-/// Used to decide whether the fish can jump in a certain direction
-#define FISH_SHORT_JUMP_MIN_DISTANCE 100
-/// The maximum distance for a short jump
-#define FISH_SHORT_JUMP_MAX_DISTANCE 200
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 // Acceleration mod when bait is over fish
 #define FISH_ON_BAIT_ACCELERATION_MULT 0.6
 /// The minimum velocity required for the bait to bounce
@@ -54,11 +37,6 @@
 	var/start_time
 	/// Is it finished (either by win/lose or window closing)
 	var/completed = FALSE
-<<<<<<< HEAD
-	/// Fish AI type to use
-	var/fish_ai = FISH_AI_DUMB
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	/// Rule modifiers (eg weighted bait)
 	var/special_effects = NONE
 	/// A list of possible active minigame effects. If not empty, one will be picked from time to time.
@@ -75,30 +53,18 @@
 	var/phase = WAIT_PHASE
 	// Timer for the next phase
 	var/next_phase_timer
-<<<<<<< HEAD
-=======
 	// The last time we clicked during the baiting phase
 	var/last_baiting_click
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	/// Fishing mob
 	var/mob/user
 	/// Rod that is used for the challenge
 	var/obj/item/fishing_rod/used_rod
-<<<<<<< HEAD
-	/// Lure visual
-	var/obj/effect/fishing_lure/lure
-	/// Background icon state from fishing_hud.dmi
-	var/background = "background_default"
-	/// Fish icon state from fishing_hud.dmi
-	var/fish_icon = "fish"
-=======
 	/// float visual
 	var/obj/effect/fishing_float/float
 	/// Background icon state from fishing_hud.dmi
 	var/background = "background_default"
 	/// Fish icon state from fishing_hud.dmi
 	var/fish_icon = FISH_ICON_DEF
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	/// Fishing line visual
 	var/datum/beam/fishing_line
@@ -117,11 +83,6 @@
 	var/fish_position = 0
 	/// The position of the bait on the minigame slider
 	var/bait_position = 0
-<<<<<<< HEAD
-	/// The current speed the fish is moving at
-	var/fish_velocity = 0
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	/// The current speed the bait is moving at
 	var/bait_velocity = 0
 
@@ -132,26 +93,7 @@
 	/// How much completion is gained per second when the bait area is intersecting with the fish's
 	var/completion_gain = 5
 
-<<<<<<< HEAD
-	/// How likely the fish is to perform a standard jump, then multiplied by difficulty
-	var/short_jump_chance = 2.25
-	/// How likely the fish is to perform a long jump, then multiplied by difficulty
-	var/long_jump_chance = 0.0625
-	/// The speed limit for the short jump
-	var/short_jump_velocity_limit = 400
-	/// The speed limit for the long jump
-	var/long_jump_velocity_limit = 200
-	/// The current speed limit used
-	var/current_velocity_limit = 200
-	/// The base velocity of the fish, which may affect jump distances and falling speed.
-	var/fish_idle_velocity = 0
-	/// A position on the slider the fish wants to get to
-	var/target_position
-	/// If true, the fish can jump while a target position is set, thus overriding it
-	var/can_interrupt_move = TRUE
-=======
 	var/datum/fish_movement/mover
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	/// Whether the bait is idle or reeling up or down (left and right click)
 	var/reeling_state = REELING_STATE_IDLE
@@ -170,32 +112,12 @@
 	src.reward_path = reward_path
 	src.used_rod = rod
 	var/atom/spot = comp.parent
-<<<<<<< HEAD
-	lure = new(get_turf(spot), spot)
-=======
 	float = new(get_turf(spot), spot)
 	float.spin_frequency = rod.spin_frequency
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	RegisterSignal(spot, COMSIG_QDELETING, PROC_REF(on_spot_gone))
 	RegisterSignal(comp.fish_source, COMSIG_FISHING_SOURCE_INTERRUPT_CHALLENGE, PROC_REF(interrupt_challenge))
 	comp.fish_source.RegisterSignal(src, COMSIG_FISHING_CHALLENGE_COMPLETED, TYPE_PROC_REF(/datum/fish_source, on_challenge_completed))
 	background = comp.fish_source.background
-<<<<<<< HEAD
-	/// Fish minigame properties
-	if(ispath(reward_path,/obj/item/fish))
-		var/obj/item/fish/fish = reward_path
-		fish_ai = initial(fish.fish_ai_type)
-		switch(fish_ai)
-			if(FISH_AI_ZIPPY) // Keeps on jumping
-				short_jump_chance *= 3
-			if(FISH_AI_SLOW) // Only does long jump, and doesn't change direction until it gets there
-				short_jump_chance = 0
-				long_jump_chance = 1.5
-				long_jump_velocity_limit = 150
-				long_jump_velocity_limit = FALSE
-		// Apply fish trait modifiers
-		var/list/fish_list_properties = collect_fish_properties()
-=======
 
 	/// Fish minigame properties
 	if(ispath(reward_path,/obj/item/fish))
@@ -204,17 +126,13 @@
 		mover = new movement_path(src)
 		// Apply fish trait modifiers
 		var/list/fish_list_properties = SSfishing.fish_properties
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		var/list/fish_traits = fish_list_properties[fish][NAMEOF(fish, fish_traits)]
 		for(var/fish_trait in fish_traits)
 			var/datum/fish_trait/trait = GLOB.fish_traits[fish_trait]
 			trait.minigame_mod(rod, user, src)
-<<<<<<< HEAD
-=======
 	else
 		mover = new /datum/fish_movement(src)
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	/// Enable special parameters
 	if(rod.line)
 		completion_gain += 1 // Any fishing line will provide a small boost by default
@@ -249,30 +167,9 @@
 		completion -= MAX_FISH_COMPLETION_MALUS * (difficulty * 0.01)
 
 	if(HAS_MIND_TRAIT(user, TRAIT_REVEAL_FISH))
-<<<<<<< HEAD
-		fish_icon = GLOB.specific_fish_icons[reward_path] || "fish"
-
-	/**
-	 * If the chances are higher than 1% (100% at maximum difficulty), they'll scale
-	 * less than proportionally (exponent less than 1) instead.
-	 * This way we ensure fish with high jump chances won't get TOO jumpy until
-	 * they near the maximum difficulty, at which they hit 100%
-	 */
-	var/square_angle_rad = TORADIANS(90)
-	var/zero_one_difficulty = difficulty/100
-	if(short_jump_chance > 1)
-		short_jump_chance = (zero_one_difficulty**(square_angle_rad-TORADIANS(arctan(short_jump_chance * 1/square_angle_rad))))*100
-	else
-		short_jump_chance *= difficulty
-	if(long_jump_chance > 1)
-		long_jump_chance = (zero_one_difficulty**(square_angle_rad-TORADIANS(arctan(long_jump_chance * 1/square_angle_rad))))*100
-	else
-		long_jump_chance *= difficulty
-=======
 		fish_icon = GLOB.specific_fish_icons[reward_path] || FISH_ICON_DEF
 
 	mover.adjust_to_difficulty()
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	bait_height -= round(difficulty * BAIT_HEIGHT_DIFFICULTY_MALUS)
 	bait_pixel_height = round(MINIGAME_BAIT_HEIGHT * (bait_height/initial(bait_height)), 1)
@@ -284,18 +181,6 @@
 		//Stops the line snapped message from appearing everytime the minigame is over.
 		UnregisterSignal(fishing_line, COMSIG_QDELETING)
 		QDEL_NULL(fishing_line)
-<<<<<<< HEAD
-	if(lure)
-		QDEL_NULL(lure)
-	SStgui.close_uis(src)
-	user = null
-	used_rod = null
-	return ..()
-
-/datum/fishing_challenge/proc/send_alert(message)
-	var/turf/lure_turf = get_turf(lure)
-	lure_turf?.balloon_alert(user, message)
-=======
 	QDEL_NULL(float)
 	SStgui.close_uis(src)
 	user = null
@@ -306,7 +191,6 @@
 /datum/fishing_challenge/proc/send_alert(message)
 	var/turf/float_turf = get_turf(float)
 	float_turf?.balloon_alert(user, message)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /datum/fishing_challenge/proc/on_spot_gone(datum/source)
 	SIGNAL_HANDLER
@@ -314,27 +198,13 @@
 	interrupt()
 
 /datum/fishing_challenge/proc/interrupt_challenge(datum/source, reason)
-<<<<<<< HEAD
-=======
 	SIGNAL_HANDLER
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	if(reason)
 		send_alert(reason)
 	interrupt()
 
 /datum/fishing_challenge/proc/start(mob/living/user)
 	/// Create fishing line visuals
-<<<<<<< HEAD
-	if(used_rod.display_fishing_line)
-		fishing_line = used_rod.create_fishing_line(lure, target_py = 5)
-		RegisterSignal(fishing_line, COMSIG_QDELETING, PROC_REF(on_line_deleted))
-	else //if the rod doesnt have a fishing line, then it ends when they move away
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_user_move))
-	active_effects = bitfield_to_list(special_effects & FISHING_MINIGAME_ACTIVE_EFFECTS)
-	// If fishing line breaks los / rod gets dropped / deleted
-	RegisterSignal(used_rod, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self))
-	ADD_TRAIT(user, TRAIT_GONE_FISHING, REF(src))
-=======
 	if(!used_rod.internal)
 		fishing_line = used_rod.create_fishing_line(float, user, target_py = 5)
 		if(isnull(fishing_line)) //couldn't create a fishing line, probably because we don't have a good line of sight.
@@ -350,7 +220,6 @@
 	// If fishing line breaks los / rod gets dropped / deleted
 	RegisterSignal(used_rod, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self))
 	ADD_TRAIT(user, TRAIT_GONE_FISHING, WEAKREF(src))
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	user.add_mood_event("fishing", /datum/mood_event/fishing)
 	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(handle_click))
 	start_baiting_phase()

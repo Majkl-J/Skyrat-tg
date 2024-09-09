@@ -114,14 +114,11 @@
 	/// String. If set to a non-empty one, it will be the key for the policy text value to show this role on spawn.
 	var/policy_index = ""
 
-<<<<<<< HEAD
 	//SKYRAT ADDITION START
 	/// Job title to use for spawning. Allows a job to spawn without needing map edits.
 	var/job_spawn_title
 	//SKYRAT ADDITION END
 
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	/// RPG job names, for the memes
 	var/rpg_title
 
@@ -144,13 +141,10 @@
 
 /datum/job/New()
 	. = ..()
-<<<<<<< HEAD
 	// SKYRAT EDIT START
 	if(!job_spawn_title)
 		job_spawn_title = title
 	// SKYRAT EDIT END
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	var/new_spawn_positions = CHECK_MAP_JOB_CHANGE(title, "spawn_positions")
 	if(isnum(new_spawn_positions))
 		spawn_positions = new_spawn_positions

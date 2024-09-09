@@ -87,11 +87,7 @@
 	var/holopay_name = "holographic pay stand"
 
 	/// Registered owner's age.
-<<<<<<< HEAD
-	var/registered_age = 18 //SKYRAT EDIT - ORIGINAL (13)
-=======
-	var/registered_age = 30
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
+	var/registered_age = 18 //SKYRAT EDIT - ORIGINAL (30)
 
 	/// The job name registered on the card (for example: Assistant).
 	var/assignment
