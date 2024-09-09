@@ -30,11 +30,7 @@
 	/// The original profile of this changeling.
 	var/datum/changeling_profile/first_profile = null
 	/// How many DNA strands the changeling can store for transformation.
-<<<<<<< HEAD
 	var/dna_max = 8 // SKYRAT EDIT - ORIGINAL: 6
-=======
-	var/dna_max = 6
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	/// The amount of DNA gained. Includes DNA sting.
 	var/absorbed_count = 0
 	/// The amount of DMA gained using absorb, not DNA sting. Start with one (your original DNA)
@@ -52,15 +48,9 @@
 	/// Changeling name, what other lings see over the hivemind when talking.
 	var/changelingID = "Changeling"
 	/// The number of genetics points (to buy powers) this ling currently has.
-<<<<<<< HEAD
 	var/genetic_points = 15 // SKYRAT EDIT - ORIGINAL: 10
 	/// The max number of genetics points (to buy powers) this ling can have..
 	var/total_genetic_points = 15 // SKYRAT EDIT - ORIGINAL: 10
-=======
-	var/genetic_points = 10
-	/// The max number of genetics points (to buy powers) this ling can have..
-	var/total_genetic_points = 10
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	/// List of all powers we start with.
 	var/list/innate_powers = list()
 	/// Associated list of all powers we have evolved / bought from the emporium. [path] = [instance of path]
@@ -96,11 +86,7 @@
 	var/static/list/slot2type = list(
 		"head" = /obj/item/clothing/head/changeling,
 		"wear_mask" = /obj/item/clothing/mask/changeling,
-<<<<<<< HEAD
 		"wear_neck" = /obj/item/changeling, // SKYRAT EDIT
-=======
-		"wear_neck" = /obj/item/changeling,
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		"back" = /obj/item/changeling,
 		"wear_suit" = /obj/item/clothing/suit/changeling,
 		"w_uniform" = /obj/item/clothing/under/changeling,
@@ -116,7 +102,6 @@
 	/// A list of all memories we've stolen through absorbs.
 	var/list/stolen_memories = list()
 
-<<<<<<< HEAD
 	var/true_form_death //SKYRAT EDIT ADDITION: The time that the horror form died.
 
 	// SKYRAT EDIT START
@@ -142,10 +127,6 @@
 		"Friendly",
 	)
 	// SKYRAT EDIT END
-=======
-	///	Keeps track of the currently selected profile.
-	var/datum/changeling_profile/current_profile
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /datum/antagonist/changeling/New()
 	. = ..()
