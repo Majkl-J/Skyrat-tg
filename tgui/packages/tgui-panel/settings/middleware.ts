@@ -17,12 +17,8 @@ import {
 import { FONTS_DISABLED } from './constants';
 import { selectSettings } from './selectors';
 
-<<<<<<< HEAD
-let setStatFontTimer: NodeJS.Timeout;
-=======
 let statFontTimer: NodeJS.Timeout;
 let statTabsTimer: NodeJS.Timeout;
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 let overrideRule: HTMLStyleElement;
 let overrideFontFamily: string | undefined;
 let overrideFontSize: string;

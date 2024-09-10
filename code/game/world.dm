@@ -336,8 +336,6 @@ GLOBAL_VAR(tracy_log)
 			return ..()
 
 	log_world("World rebooted at [time_stamp()]")
-<<<<<<< HEAD
-=======
 
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	auxcleanup()
@@ -355,7 +353,6 @@ GLOBAL_VAR(tracy_log)
 /world/Del()
 	auxcleanup()
 	. = ..()
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	auxcleanup()
@@ -427,10 +424,7 @@ GLOBAL_VAR(tracy_log)
 		new_status += "[SSmapping.config ? " | " : "<br>"]Next: <b>[SSmapping.next_map_config.map_path == CUSTOM_MAP_PATH ? "Uncharted Territory" : SSmapping.next_map_config.map_name]</b>"
 
 	status = new_status
-<<<<<<< HEAD
 */
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /world/proc/update_hub_visibility(new_visibility)
 	if(new_visibility == GLOB.hub_visibility)
@@ -442,11 +436,7 @@ GLOBAL_VAR(tracy_log)
 		hub_password = "SORRYNOPASSWORD"
 
 /**
-<<<<<<< HEAD
- * Handles incresing the world's maxx var and intializing the new turfs and assigning them to the global area.
-=======
  * Handles increasing the world's maxx var and initializing the new turfs and assigning them to the global area.
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
  * If map_load_z_cutoff is passed in, it will only load turfs up to that z level, inclusive.
  * This is because maploading will handle the turfs it loads itself.
  */
@@ -473,11 +463,7 @@ GLOBAL_VAR(tracy_log)
 	maxy = new_maxy
 	if(!map_load_z_cutoff)
 		return
-<<<<<<< HEAD
-	var/area/global_area = GLOB.areas_by_type[world.area] // We're guarenteed to be touching the global area, so we'll just do this
-=======
 	var/area/global_area = GLOB.areas_by_type[world.area] // We're guaranteed to be touching the global area, so we'll just do this
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
 	for (var/zlevel in 1 to map_load_z_cutoff)
 		var/list/to_add = block(
@@ -512,10 +498,7 @@ GLOBAL_VAR(tracy_log)
 
 /world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
-<<<<<<< HEAD
-=======
 	DREAMLUAU_SET_EXECUTION_LIMIT_MILLIS(tick_lag * 100)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /world/proc/init_byond_tracy()
 	var/library

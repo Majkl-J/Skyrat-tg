@@ -719,7 +719,6 @@ export const MainPage = (props: { openSpecies: () => void }) => {
               </Stack.Item>
 
               <Stack.Item grow basis={0}>
-<<<<<<< HEAD
                 {/* SKYRAT EDIT BEGIN: Swappable pref menus */}
                 <Stack>
                   <Stack.Item grow>
@@ -730,30 +729,6 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                     >
                       Character Visuals
                     </PageButton>
-=======
-                <Stack vertical fill>
-                  <PreferenceList
-                    act={act}
-                    randomizations={getRandomization(
-                      contextualPreferences,
-                      serverData,
-                      randomBodyEnabled,
-                    )}
-                    preferences={contextualPreferences}
-                    maxHeight="auto"
-                  />
-
-                  <PreferenceList
-                    act={act}
-                    randomizations={getRandomization(
-                      nonContextualPreferences,
-                      serverData,
-                      randomBodyEnabled,
-                    )}
-                    preferences={nonContextualPreferences}
-                    maxHeight="auto"
-                  >
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
                     <Box my={0.5}>
                       <Button
                         color="red"
@@ -767,7 +742,6 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                         Delete Character
                       </Button>
                     </Box>
-<<<<<<< HEAD
                   </Stack.Item>
                   <Stack.Item grow>
                     <PageButton
@@ -784,10 +758,6 @@ export const MainPage = (props: { openSpecies: () => void }) => {
                   {prefPageContents}
                 </Stack>
                 {/* SKYRAT EDIT END: Swappable pref menus */}
-=======
-                  </PreferenceList>
-                </Stack>
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
               </Stack.Item>
             </Stack>
           </>
