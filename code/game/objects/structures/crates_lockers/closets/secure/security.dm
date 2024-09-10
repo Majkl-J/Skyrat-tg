@@ -125,11 +125,7 @@
 	new /obj/item/radio/headset/headset_sec/alt(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/flashlight/seclite(src)
-<<<<<<< HEAD
 	new /obj/item/clothing/gloves/tackler/security(src) // SKYRAT EDIT CHANGE - Gives Them The Blue Ones - ORIGINAL: new /obj/item/clothing/gloves/tackler(src)
-=======
-	new /obj/item/clothing/gloves/tackler(src)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /obj/structure/closet/secure_closet/security/sec
 
@@ -299,10 +295,7 @@
 
 /obj/structure/closet/secure_closet/armory1
 	name = "armory armor locker"
-<<<<<<< HEAD
-=======
 	icon_state = "armory"
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	req_access = list(ACCESS_ARMORY)
 
 /obj/structure/closet/secure_closet/armory1/PopulateContents()
