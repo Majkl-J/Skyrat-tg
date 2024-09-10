@@ -633,11 +633,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 	if (use(1) && amount > 0)
 		INVOKE_ASYNC(src, PROC_REF(try_heal_loop), interacting_with, user, TRUE)
-<<<<<<< HEAD
-=======
 
 	return ITEM_INTERACT_SUCCESS
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 ///////////////////////////////////////////////
 // Cable laying procedures
@@ -656,11 +653,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		to_chat(user, span_warning("There is no cable left!"))
 		return
 
-<<<<<<< HEAD
-	if(get_dist(T,user) > 1)
-=======
 	if(get_dist(T,user) > 1) // Too far
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		to_chat(user, span_warning("You can't lay cable at a place that far away!"))
 		return
 

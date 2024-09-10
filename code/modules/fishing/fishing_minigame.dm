@@ -224,9 +224,6 @@
 	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(handle_click))
 	start_baiting_phase()
 	to_chat(user, span_notice("You start fishing..."))
-<<<<<<< HEAD
-	playsound(lure, 'sound/effects/splash.ogg', 100)
-=======
 	playsound(float, 'sound/effects/splash.ogg', 100)
 
 ///Set the timers for lure that need to be spun at intervals.
@@ -258,21 +255,10 @@
 		return
 	send_alert("miss!")
 	start_baiting_phase(TRUE) //Add in another 3 to 5 seconds for not spinning the lure.
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /datum/fishing_challenge/proc/on_line_deleted(datum/source)
 	SIGNAL_HANDLER
 	fishing_line = null
-<<<<<<< HEAD
-	///The lure may be out of sight if the user has moed around a corner, so the message should be displayed over him instead.
-	user.balloon_alert(user, user.is_holding(used_rod) ? "line snapped" : "rod dropped")
-	interrupt()
-
-/datum/fishing_challenge/proc/on_user_move(datum/source)
-	SIGNAL_HANDLER
-
-	user.balloon_alert(user, "too far!")
-=======
 	///The float may be out of sight if the user has moed around a corner, so the message should be displayed over him instead.
 	user.balloon_alert(user, user.is_holding(used_rod) ? "line snapped" : "rod dropped")
 	interrupt()
@@ -294,21 +280,10 @@
 /datum/fishing_challenge/proc/no_longer_fishing(datum/source)
 	SIGNAL_HANDLER
 	user.balloon_alert(user, "interrupted!")
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	interrupt()
 
 /datum/fishing_challenge/proc/handle_click(mob/source, atom/target, modifiers)
 	SIGNAL_HANDLER
-<<<<<<< HEAD
-	//You need to be holding the rod to use it.
-	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK))
-		return
-	if(!HAS_TRAIT(source, TRAIT_PROFOUND_FISHER) && source.get_active_held_item() != used_rod)
-		return
-	if(phase == WAIT_PHASE)
-		send_alert("miss!")
-		start_baiting_phase(TRUE) //Add in another 3 to 5 seconds for that blunder.
-=======
 	if(HAS_TRAIT(source, TRAIT_HANDS_BLOCKED)) //blocked, can't do stuff
 		return
 	//Doing other stuff
@@ -332,7 +307,6 @@
 		else
 			send_alert("miss!")
 			start_baiting_phase(TRUE) //Add in another 3 to 5 seconds for that blunder.
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	else if(phase == BITING_PHASE)
 		start_minigame_phase()
 	return COMSIG_MOB_CANCEL_CLICKON
@@ -360,14 +334,9 @@
 	completed = TRUE
 	if(phase == MINIGAME_PHASE)
 		remove_minigame_hud()
-<<<<<<< HEAD
-	if(user)
-		REMOVE_TRAIT(user, TRAIT_GONE_FISHING, REF(src))
-=======
 	if(!QDELETED(user))
 		UnregisterSignal(user, SIGNAL_REMOVETRAIT(TRAIT_GONE_FISHING))
 		user.remove_traits(list(TRAIT_GONE_FISHING, TRAIT_ACTIVELY_FISHING), WEAKREF(src))
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		if(start_time)
 			var/seconds_spent = (world.time - start_time) * 0.1
 			if(!(special_effects & FISHING_MINIGAME_RULE_NO_EXP))
@@ -376,54 +345,33 @@
 					user.client?.give_award(/datum/award/achievement/skill/legendary_fisher, user)
 	if(win)
 		if(reward_path != FISHING_DUD)
-<<<<<<< HEAD
-			playsound(lure, 'sound/effects/bigsplash.ogg', 100)
-=======
 			playsound(float, 'sound/effects/bigsplash.ogg', 100)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	SEND_SIGNAL(src, COMSIG_FISHING_CHALLENGE_COMPLETED, user, win)
 	if(!QDELETED(src))
 		qdel(src)
 
 /datum/fishing_challenge/proc/start_baiting_phase(penalty = FALSE)
 	var/wait_time
-<<<<<<< HEAD
-	if(penalty)
-		wait_time = min(timeleft(next_phase_timer) + rand(3 SECONDS, 5 SECONDS), 30 SECONDS)
-	else
-		wait_time = rand(3 SECONDS, 25 SECONDS)
-=======
 	last_baiting_click = world.time
 	if(penalty)
 		wait_time = min(timeleft(next_phase_timer) + rand(3 SECONDS, 5 SECONDS), 30 SECONDS)
 	else
 		wait_time = float.spin_frequency ? rand(11 SECONDS, 17 SECONDS) : rand(3 SECONDS, 25 SECONDS)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		if(special_effects & FISHING_MINIGAME_AUTOREEL && wait_time >= 15 SECONDS)
 			wait_time = max(wait_time - 7.5 SECONDS, 15 SECONDS)
 	deltimer(next_phase_timer)
 	phase = WAIT_PHASE
 	//Bobbing animation
-<<<<<<< HEAD
-	animate(lure, pixel_y = 1, time = 1 SECONDS, loop = -1, flags = ANIMATION_RELATIVE)
-	animate(pixel_y = -1, time = 1 SECONDS, flags = ANIMATION_RELATIVE)
-	next_phase_timer = addtimer(CALLBACK(src, PROC_REF(start_biting_phase)), wait_time, TIMER_STOPPABLE)
-=======
 	animate(float, pixel_y = 1, time = 1 SECONDS, loop = -1, flags = ANIMATION_RELATIVE)
 	animate(pixel_y = -1, time = 1 SECONDS, flags = ANIMATION_RELATIVE)
 	next_phase_timer = addtimer(CALLBACK(src, PROC_REF(start_biting_phase)), wait_time, TIMER_STOPPABLE|TIMER_DELETE_ME)
 	if(float.spin_frequency)
 		set_lure_timers()
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /datum/fishing_challenge/proc/start_biting_phase()
 	phase = BITING_PHASE
 	// Trashing animation
-<<<<<<< HEAD
-	playsound(lure, 'sound/effects/fish_splash.ogg', 100)
-=======
 	playsound(float, 'sound/effects/fish_splash.ogg', 100)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	if(HAS_MIND_TRAIT(user, TRAIT_REVEAL_FISH))
 		switch(fish_icon)
 			if(FISH_ICON_DEF)
@@ -446,17 +394,6 @@
 				send_alert("crustacean!!!")
 			if(FISH_ICON_BONE)
 				send_alert("bones!!!")
-<<<<<<< HEAD
-	else
-		send_alert("!!!")
-	animate(lure, pixel_y = 3, time = 5, loop = -1, flags = ANIMATION_RELATIVE)
-	animate(pixel_y = -3, time = 5, flags = ANIMATION_RELATIVE)
-	if(special_effects & FISHING_MINIGAME_AUTOREEL)
-		start_minigame_phase(auto_reel = TRUE)
-		return
-	// Setup next phase
-	next_phase_timer = addtimer(CALLBACK(src, PROC_REF(start_baiting_phase)), BITING_TIME_WINDOW, TIMER_STOPPABLE)
-=======
 			if(FISH_ICON_ELECTRIC)
 				send_alert("zappy!!!")
 			if(FISH_ICON_WEAPON)
@@ -482,7 +419,6 @@
 /datum/fishing_challenge/proc/automatically_start_minigame()
 	if(phase == BITING_PHASE)
 		start_minigame_phase(auto_reel = TRUE)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 ///The damage dealt per second to the fish when FISHING_MINIGAME_RULE_KILL is active.
 #define FISH_DAMAGE_PER_SECOND 2
@@ -518,10 +454,6 @@
 				completion *= 1.2
 			if(BITING_TIME_WINDOW - 0.5 SECONDS to BITING_TIME_WINDOW)
 				completion *= 1.4
-<<<<<<< HEAD
-	if(!prepare_minigame_hud())
-		return
-=======
 	//randomize the position of the fish a little
 	fish_position = rand(0, (FISHING_MINIGAME_AREA - fish_height) * 0.8)
 	var/diff_dist = 100 + difficulty
@@ -531,18 +463,11 @@
 		qdel(src)
 		return
 	ADD_TRAIT(user, TRAIT_ACTIVELY_FISHING, WEAKREF(src))
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	phase = MINIGAME_PHASE
 	deltimer(next_phase_timer)
 	if((FISHING_MINIGAME_RULE_KILL in special_effects) && ispath(reward_path,/obj/item/fish))
 		var/obj/item/fish/fish = reward_path
 		var/wait_time = (initial(fish.health) / FISH_DAMAGE_PER_SECOND) SECONDS
-<<<<<<< HEAD
-		addtimer(CALLBACK(src, PROC_REF(win_anyway)), wait_time)
-	start_time = world.time
-	experience_multiplier += difficulty * FISHING_SKILL_DIFFIULTY_EXP_MULT
-
-=======
 		addtimer(CALLBACK(src, PROC_REF(win_anyway)), wait_time, TIMER_DELETE_ME)
 	start_time = world.time
 	experience_multiplier += difficulty * FISHING_SKILL_DIFFIULTY_EXP_MULT
@@ -563,16 +488,11 @@
 	text += "."
 	stack_trace(text)
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 #undef FISH_DAMAGE_PER_SECOND
 
 ///Initialize the minigame hud and register some signals to make it work.
 /datum/fishing_challenge/proc/prepare_minigame_hud()
-<<<<<<< HEAD
-	if(!user.client || user.incapacitated())
-=======
 	if(!user.client || user.incapacitated)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		return FALSE
 	. = TRUE
 	fishing_hud = new
@@ -609,11 +529,7 @@
 /datum/fishing_challenge/process(seconds_per_tick)
 	if(length(active_effects) && COOLDOWN_FINISHED(src, active_effect_cd))
 		select_active_effect()
-<<<<<<< HEAD
-	move_fish(seconds_per_tick)
-=======
 	mover.move_fish(seconds_per_tick)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	move_bait(seconds_per_tick)
 	if(!QDELETED(fishing_hud))
 		update_visuals()
@@ -633,14 +549,11 @@
 				fishing_hud.transform = fishing_hud.transform.Scale(1, -1)
 				SEND_SOUND(user, sound('sound/effects/boing.ogg'))
 				COOLDOWN_START(src, active_effect_cd, rand(5, 6) SECONDS)
-<<<<<<< HEAD
-=======
 			if(FISHING_MINIGAME_RULE_CAMO)
 				fishing_hud.icon_state = "background_camo"
 				SEND_SOUND(user, sound('sound/effects/nightmare_poof.ogg', volume = 15))
 				COOLDOWN_START(src, active_effect_cd, rand(6, 8) SECONDS)
 				animate(fishing_hud.hud_fish, alpha = 7, time = 2 SECONDS)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		return
 
 	///go back to normal
@@ -653,72 +566,14 @@
 		if(FISHING_MINIGAME_RULE_FLIP)
 			fishing_hud.transform = fishing_hud.transform.Scale(1, -1)
 			COOLDOWN_START(src, active_effect_cd, rand(8, 12) SECONDS)
-<<<<<<< HEAD
-=======
 		if(FISHING_MINIGAME_RULE_CAMO)
 			COOLDOWN_START(src, active_effect_cd, rand(9, 16) SECONDS)
 			SEND_SOUND(user, sound('sound/effects/nightmare_reappear.ogg', volume = 15))
 			animate(fishing_hud.hud_fish, alpha = 255, time = 1.2 SECONDS)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	fishing_hud.icon_state = background
 	current_active_effect = null
 
-<<<<<<< HEAD
-///The proc that moves the fish around, just like in the old TGUI, mostly.
-/datum/fishing_challenge/proc/move_fish(seconds_per_tick)
-	var/long_chance = long_jump_chance * seconds_per_tick * 10
-	var/short_chance = short_jump_chance * seconds_per_tick * 10
-
-	// If we have the target but we're close enough, mark as target reached
-	if(abs(target_position - fish_position) < FISH_TARGET_MIN_DISTANCE)
-		target_position = null
-
-	// Switching to new long jump target can interrupt any other
-	if((can_interrupt_move || isnull(target_position)) && prob(long_chance))
-		/**
-		 * Move at least 0.75 to full of the availible bar in given direction,
-		 * and more likely to move in the direction where there's more space
-		 */
-		var/distance_from_top = FISHING_MINIGAME_AREA - fish_position - fish_height
-		var/distance_from_bottom = fish_position
-		var/top_chance
-		if(distance_from_top < FISH_SHORT_JUMP_MIN_DISTANCE)
-			top_chance = 0
-		else
-			top_chance = (distance_from_top/max(distance_from_bottom, 1)) * 100
-		var/new_target = fish_position
-		if(prob(top_chance))
-			new_target += distance_from_top * rand(75, 100)/100
-		else
-			new_target -= distance_from_bottom * rand(75, 100)/100
-		target_position = round(new_target)
-		current_velocity_limit = long_jump_velocity_limit
-
-	// Move towards target
-	if(!isnull(target_position))
-		var/distance = target_position - fish_position
-		// about 5 at diff 15 , 10 at diff 30, 30 at diff 100
-		var/acceleration_mult = 0.3 * difficulty + 0.5
-		var/target_acceleration = distance * acceleration_mult * seconds_per_tick
-
-		fish_velocity = fish_velocity * FISH_FRICTION_MULT + target_acceleration
-	else if(prob(short_chance))
-		var/distance_from_top = FISHING_MINIGAME_AREA - fish_position - fish_height
-		var/distance_from_bottom = fish_position
-		var/jump_length
-		if(distance_from_top >= FISH_SHORT_JUMP_MIN_DISTANCE)
-			jump_length = rand(FISH_SHORT_JUMP_MIN_DISTANCE, FISH_SHORT_JUMP_MAX_DISTANCE)
-		if(distance_from_bottom >= FISH_SHORT_JUMP_MIN_DISTANCE && (!jump_length || prob(50)))
-			jump_length = -rand(FISH_SHORT_JUMP_MIN_DISTANCE, FISH_SHORT_JUMP_MAX_DISTANCE)
-		target_position = clamp(fish_position + jump_length, 0, FISHING_MINIGAME_AREA - fish_height)
-		current_velocity_limit = short_jump_velocity_limit
-
-	fish_velocity = clamp(fish_velocity + fish_idle_velocity, -current_velocity_limit, current_velocity_limit)
-	fish_position = clamp(fish_position + fish_velocity * seconds_per_tick, 0, FISHING_MINIGAME_AREA - fish_height)
-
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 ///The proc that moves the bait around, just like in the old TGUI, mostly.
 /datum/fishing_challenge/proc/move_bait(seconds_per_tick)
 	var/should_bounce = abs(bait_velocity) > BAIT_MIN_VELOCITY_BOUNCE
@@ -779,13 +634,7 @@
 		bait_velocity += velocity_change
 
 	//check that the fish area is still intersecting the bait now that it has moved
-<<<<<<< HEAD
-	fish_on_bait = (fish_position + fish_height >= bait_position) && (bait_position + bait_height >= fish_position)
-
-	if(fish_on_bait)
-=======
 	if(is_fish_on_bait())
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		completion += completion_gain * seconds_per_tick
 		if(completion >= 100)
 			complete(TRUE)
@@ -797,13 +646,10 @@
 
 	completion = clamp(completion, 0, 100)
 
-<<<<<<< HEAD
-=======
 ///Returns TRUE if the fish and the bait are intersecting
 /datum/fishing_challenge/proc/is_fish_on_bait()
 	return (fish_position + fish_height >= bait_position) && (bait_position + bait_height >= fish_position)
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 ///update the vertical pixel position of both fish and bait, and the icon state of the completion bar
 /datum/fishing_challenge/proc/update_visuals()
 	var/bait_offset_mult = bait_position/FISHING_MINIGAME_AREA
@@ -884,18 +730,6 @@
 		icon_state = "completion_[FLOOR(challenge.completion, 5)]"
 
 /// The visual that appears over the fishing spot
-<<<<<<< HEAD
-/obj/effect/fishing_lure
-	icon = 'icons/obj/fishing.dmi'
-	icon_state = "lure_idle"
-
-/obj/effect/fishing_lure/Initialize(mapload, atom/spot)
-	. = ..()
-	if(ismovable(spot)) // we want the lure and therefore the fishing line to stay connected with the fishing spot.
-		RegisterSignal(spot, COMSIG_MOVABLE_MOVED, PROC_REF(follow_movable))
-
-/obj/effect/fishing_lure/proc/follow_movable(atom/movable/source)
-=======
 /obj/effect/fishing_float
 	name = "float"
 	icon = 'icons/obj/fishing.dmi'
@@ -915,14 +749,11 @@
 		RegisterSignal(spot, COMSIG_MOVABLE_MOVED, PROC_REF(follow_movable))
 
 /obj/effect/fishing_float/proc/follow_movable(atom/movable/source)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	SIGNAL_HANDLER
 
 	set_glide_size(source.glide_size)
 	forceMove(source.loc)
 
-<<<<<<< HEAD
-=======
 /obj/effect/fishing_float/update_overlays()
 	. = ..()
 	if(!spin_frequency)
@@ -932,23 +763,10 @@
 	. += overlay
 	. += emissive_appearance(icon, "lure_light_emissive", src, alpha = src.alpha)
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 #undef WAIT_PHASE
 #undef BITING_PHASE
 #undef MINIGAME_PHASE
 
-<<<<<<< HEAD
-#undef FISHING_MINIGAME_AREA
-#undef FISH_TARGET_MIN_DISTANCE
-#undef FISH_FRICTION_MULT
-#undef FISH_SHORT_JUMP_MIN_DISTANCE
-#undef FISH_SHORT_JUMP_MAX_DISTANCE
-#undef FISH_ON_BAIT_ACCELERATION_MULT
-#undef BAIT_MIN_VELOCITY_BOUNCE
-#undef BAIT_DECELERATION_MULT
-
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 #undef MINIGAME_SLIDER_HEIGHT
 #undef MINIGAME_BAIT_HEIGHT
 #undef MINIGAME_FISH_HEIGHT
@@ -959,12 +777,9 @@
 #undef REELING_STATE_UP
 #undef REELING_STATE_DOWN
 
-<<<<<<< HEAD
-=======
 #undef FISH_ON_BAIT_ACCELERATION_MULT
 #undef BAIT_MIN_VELOCITY_BOUNCE
 #undef BAIT_DECELERATION_MULT
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 #undef MAX_FISH_COMPLETION_MALUS
 #undef BITING_TIME_WINDOW

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 /* SKYRAT EDIT REMOVAL
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 /datum/preference/choiced/tail_human
 	savefile_key = "feature_human_tail"
 	savefile_identifier = PREFERENCE_CHARACTER

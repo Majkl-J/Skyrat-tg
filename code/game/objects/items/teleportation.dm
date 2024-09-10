@@ -195,11 +195,7 @@
 	var/teleport_location_key = tgui_input_list(user, "Teleporter to lock on", "Hand Teleporter", sort_list(locations))
 	if (isnull(teleport_location_key))
 		return
-<<<<<<< HEAD
-	if(user.get_active_held_item() != src || user.incapacitated())
-=======
 	if(user.get_active_held_item() != src || user.incapacitated)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		return
 
 	// Not always a datum, but needed for IS_WEAKREF_OF to cast properly.

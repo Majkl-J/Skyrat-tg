@@ -187,15 +187,9 @@
 
 /// Announce that this job as joined the round to all crew members.
 /// Note the joining mob has no client at this point.
-<<<<<<< HEAD
 /datum/job/proc/announce_job(mob/living/joining_mob, job_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: /datum/job/proc/announce_job(mob/living/joining_mob)
 	if(head_announce)
 		announce_head(joining_mob, head_announce, job_title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: announce_head(joining_mob, head_announce)
-=======
-/datum/job/proc/announce_job(mob/living/joining_mob)
-	if(head_announce)
-		announce_head(joining_mob, head_announce)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 
 //Used for a special check of whether to allow a client to latejoin as this job.

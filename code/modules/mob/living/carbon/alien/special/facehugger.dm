@@ -24,14 +24,11 @@
 	layer = MOB_LAYER
 	max_integrity = 100
 	item_flags = XENOMORPH_HOLDABLE
-<<<<<<< HEAD
 	// SKYRAT EDIT ADDITION START
 	special_desc_requirement = EXAMINE_CHECK_JOB
 	special_desc_jobs = list("Scientist, Research Director")
 	special_desc = "This alien is an extremely dangerous life form capable of creating a xenomorph. You would know well not to approach without full body biological protection."
 	// SKYRAT EDIT ADDITION END
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	slowdown = 2
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
 

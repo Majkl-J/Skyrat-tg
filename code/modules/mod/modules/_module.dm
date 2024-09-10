@@ -104,7 +104,6 @@
 		if(mod.wearer)
 			balloon_alert(mod.wearer, "not active!")
 		return
-<<<<<<< HEAD
 	// SKYRAT EDIT START - DEPLOYABLE EVERYTHING OVER EVERYTHING
 	var/can_activate = TRUE
 	if(!(allow_flags & MODULE_ALLOW_INACTIVE))
@@ -116,8 +115,6 @@
 		balloon_alert(mod.wearer, "not fully deployed!")
 		return
 	// SKYRAT EDIT END
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	if(module_type != MODULE_USABLE)
 		if(active)
 			deactivate()
