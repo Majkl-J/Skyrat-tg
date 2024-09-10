@@ -32,7 +32,6 @@ const PriorityButton = (props: {
   const className = `PreferencesMenu__Jobs__departments__priority`;
 
   return (
-<<<<<<< HEAD
     // SKYRAT EDIT START
     <Button
       className={classes([
@@ -48,23 +47,6 @@ const PriorityButton = (props: {
       width={PRIORITY_BUTTON_SIZE}
     />
     // SKYRAT EDIT END
-=======
-    <Stack.Item height={PRIORITY_BUTTON_SIZE}>
-      <Button
-        className={classes([
-          className,
-          props.modifier && `${className}--${props.modifier}`,
-        ])}
-        color={props.enabled ? props.color : 'white'}
-        circular
-        onClick={props.onClick}
-        tooltip={props.name}
-        tooltipPosition="bottom"
-        height={PRIORITY_BUTTON_SIZE}
-        width={PRIORITY_BUTTON_SIZE}
-      />
-    </Stack.Item>
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
   );
 };
 

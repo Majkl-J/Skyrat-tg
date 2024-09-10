@@ -6,11 +6,7 @@
 	gender = PLURAL
 	name = "red lipstick"
 	desc = "A generic brand of lipstick."
-<<<<<<< HEAD
 	icon =  'modular_skyrat/modules/salon/icons/items.dmi' //SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/obj/cosmetic.dmi'
-=======
-	icon = 'icons/obj/cosmetic.dmi'
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	icon_state = "lipstick"
 	base_icon_state = "lipstick"
 	inhand_icon_state = "lipstick"

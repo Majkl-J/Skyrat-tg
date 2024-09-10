@@ -58,19 +58,11 @@ function setGlobalFontSize(
   overrideFontSize = `${fontSize}px`;
 
   // Used solution from theme.ts
-<<<<<<< HEAD
-  clearInterval(setStatFontTimer);
-  Byond.command(
-    `.output statbrowser:set_font_size ${statLinked ? fontSize : statFontSize}px`,
-  );
-  setStatFontTimer = setTimeout(() => {
-=======
   clearInterval(statFontTimer);
   Byond.command(
     `.output statbrowser:set_font_size ${statLinked ? fontSize : statFontSize}px`,
   );
   statFontTimer = setTimeout(() => {
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
     Byond.command(
       `.output statbrowser:set_font_size ${statLinked ? fontSize : statFontSize}px`,
     );
@@ -81,8 +73,6 @@ function setGlobalFontFamily(fontFamily: string) {
   overrideFontFamily = fontFamily === FONTS_DISABLED ? undefined : fontFamily;
 }
 
-<<<<<<< HEAD
-=======
 function setStatTabsStyle(style: string) {
   clearInterval(statTabsTimer);
   Byond.command(`.output statbrowser:set_tabs_style ${style}`);
@@ -91,7 +81,6 @@ function setStatTabsStyle(style: string) {
   }, 1500);
 }
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 export function settingsMiddleware(store) {
   let initialized = false;
 
@@ -125,12 +114,9 @@ export function settingsMiddleware(store) {
 
     const settings = selectSettings(store.getState());
 
-<<<<<<< HEAD
-=======
     // Update stat panel settings
     setStatTabsStyle(settings.statTabsStyle);
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
     // Update global UI font size
     setGlobalFontSize(
       settings.fontSize,
