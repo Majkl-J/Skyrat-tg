@@ -6,11 +6,7 @@ import { useBackend } from '../backend';
 import { Box, Button, Icon, Image, Stack } from '../components';
 import { Window } from '../layouts';
 
-<<<<<<< HEAD
 const ROWS = 6; // SKYRAT EDIT CHANGE
-=======
-const ROWS = 5;
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 const COLUMNS = 6;
 
 const BUTTON_DIMENSIONS = '50px';
@@ -225,7 +221,7 @@ const SLOTS: Record<
     gridSpot: getGridSpotKey([4, 5]),
     image: 'inventory-pocket.png',
   },
-<<<<<<< HEAD
+
   // SKYRAT EDIT ADDITION
   vagina: {
     displayName: 'vagina',
@@ -252,10 +248,7 @@ const SLOTS: Record<
   },
 };
 // SKYRAT EDIT END
-=======
-};
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 enum ObscuringLevel {
   Completely = 1,
   Hidden = 2,

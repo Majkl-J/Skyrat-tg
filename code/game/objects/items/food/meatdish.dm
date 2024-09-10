@@ -521,11 +521,7 @@
 
 /obj/item/food/patty
 	name = "patty"
-<<<<<<< HEAD
-	desc = "The nanotrasen patty is the patty for you and me!"
-=======
 	desc = "The Nanotrasen patty is the patty for you and me!"
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "patty"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
