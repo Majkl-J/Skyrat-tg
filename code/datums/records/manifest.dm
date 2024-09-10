@@ -15,11 +15,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 		if(readied_player.new_character)
 			log_manifest(readied_player.ckey, readied_player.new_character.mind, readied_player.new_character)
 		if(ishuman(readied_player.new_character))
-<<<<<<< HEAD
 			inject(readied_player.new_character, readied_player.client) // SKYRAT EDIT - RP Records - ORIGINAL: inject(readied_player.new_character)
-=======
-			inject(readied_player.new_character)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		CHECK_TICK
 
 /// Gets the current manifest.
