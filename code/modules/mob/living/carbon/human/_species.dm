@@ -119,11 +119,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/obj/item/organ/internal/appendix/mutantappendix = /obj/item/organ/internal/appendix
 
 	/// Store body marking defines. See mobs.dm for bitflags
-<<<<<<< HEAD
 	//var/list/body_markings = list() // SKYRAT EDIT REMOVAL - We already have this defined as an assoc list
-=======
-	var/list/body_markings = list()
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	/// Flat modifier on all damage taken via [apply_damage][/mob/living/proc/apply_damage] (so being punched, shot, etc.)
 	/// IE: 10 = 10% less damage taken.
@@ -303,14 +299,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(ORGAN_SLOT_STOMACH)
 			return mutantstomach
 		else
-<<<<<<< HEAD
-			CRASH("Invalid organ slot [slot]")
-=======
 			// Non-standard organs we might have
 			for(var/obj/item/organ/extra_organ as anything in mutant_organs)
 				if(initial(extra_organ.slot) == slot)
 					return extra_organ
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /**
  * Corrects organs in a carbon, removing ones it doesn't need and adding ones it does.
@@ -1767,11 +1759,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	former_tail_owner.clear_mood_event("tail_balance_lost")
 	former_tail_owner.clear_mood_event("tail_regained")
 
-<<<<<<< HEAD
 /* SKYRAT EDIT REMOVAL - MOVED TO MODULAR
 
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 /// Returns a list of strings representing features this species has.
 /// Used by the preferences UI to know what buttons to show.
 /datum/species/proc/get_features()
@@ -1785,24 +1774,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		var/datum/preference/preference = GLOB.preference_entries[preference_type]
 
 		if ( \
-<<<<<<< HEAD
-			(preference.relevant_mutant_bodypart in mutant_bodyparts) \
-			|| (preference.relevant_inherent_trait in inherent_traits) \
-			|| (preference.relevant_external_organ in external_organs) \
-=======
 			(preference.relevant_inherent_trait in inherent_traits) \
 			|| (preference.relevant_external_organ in mutant_organs) \
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 			|| (preference.relevant_head_flag && check_head_flags(preference.relevant_head_flag)) \
 			|| (preference.relevant_body_markings in body_markings) \
 		)
 			features += preference.savefile_key
 
-<<<<<<< HEAD
-	for (var/obj/item/organ/external/organ_type as anything in external_organs)
-=======
 	for (var/obj/item/organ/organ_type as anything in mutant_organs)
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		var/preference = initial(organ_type.preference)
 		if (!isnull(preference))
 			features += preference
@@ -1810,10 +1789,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	GLOB.features_by_species[type] = features
 
 	return features
-<<<<<<< HEAD
 */
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 /// Given a human, will adjust it before taking a picture for the preferences UI.
 /// This should create a CONSISTENT result, so the icons don't randomly change.
@@ -2341,15 +2317,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "comment",
 			SPECIES_PERK_NAME = "Native Speaker",
-<<<<<<< HEAD
 			/* SKYRAT EDIT - Digitigrade customization - ORIGINAL:
 			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] gain the ability to speak [english_list(bonus_languages)].",
 			*/ // ORIGINAL END - SKYRAT EDIT START:
 			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] commonly speak [english_list(bonus_languages)].",
 			// SKYRAT EDIT END
-=======
-			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] gain the ability to speak [english_list(bonus_languages)].",
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		))
 
 	else
@@ -2367,7 +2339,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	new_species ||= target.dna.species //If no new species is provided, assume its src.
 	//Note for future: Potentionally add a new C.dna.species() to build a template species for more accurate limb replacement
 
-<<<<<<< HEAD
 	// SKYRAT EDIT ADDITION START - Synth digitigrade sanitization
 	var/ignore_digi = FALSE // You can jack into this var with other checks, if you want.
 	if(issynthetic(target))
@@ -2394,12 +2365,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(l_leg)
 			final_bodypart_overrides[BODY_ZONE_L_LEG] = initial(l_leg.digitigrade_type)
 		// SKYRAT EDIT END
-=======
-	var/list/final_bodypart_overrides = new_species.bodypart_overrides.Copy()
-	if((new_species.digitigrade_customization == DIGITIGRADE_OPTIONAL && target.dna.features["legs"] == DIGITIGRADE_LEGS) || new_species.digitigrade_customization == DIGITIGRADE_FORCED)
-		final_bodypart_overrides[BODY_ZONE_R_LEG] = /obj/item/bodypart/leg/right/digitigrade
-		final_bodypart_overrides[BODY_ZONE_L_LEG] = /obj/item/bodypart/leg/left/digitigrade
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	for(var/obj/item/bodypart/old_part as anything in target.bodyparts)
 		if((old_part.change_exempt_flags & BP_BLOCK_CHANGE_SPECIES) || (old_part.bodypart_flags & BODYPART_IMPLANTED))
@@ -2486,13 +2451,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /// Update the overlays if necessary
 /datum/species/proc/update_body_markings(mob/living/carbon/human/hooman)
-<<<<<<< HEAD
-=======
 	if(HAS_TRAIT(hooman, TRAIT_INVISIBLE_MAN))
 		remove_body_markings(hooman)
 		return
 
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	var/needs_update = FALSE
 	for(var/datum/bodypart_overlay/simple/body_marking/marking as anything in body_markings)
 		if(initial(marking.dna_feature_key) == body_markings[marking]) // dna is same as our species (sort of mini-cache), so no update needed

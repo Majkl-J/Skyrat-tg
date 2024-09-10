@@ -574,15 +574,10 @@
 		return
 	var/age_text
 	switch(age)
-<<<<<<< HEAD
 		if(-INFINITY to 17) // SKYRAT EDIT ADD START -- AGE EXAMINE
 			age_text = "too young to be here"
 		if(18 to 25)
 			age_text = "a young adult" // SKYRAT EDIT END
-=======
-		if(-INFINITY to 25)
-			age_text = "very young"
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		if(26 to 35)
 			age_text = "of adult age"
 		if(36 to 55)

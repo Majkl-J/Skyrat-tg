@@ -1059,10 +1059,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	female_uniform = NO_FEMALE_UNIFORM,
 	override_state = null,
 	override_file = null,
-<<<<<<< HEAD
 	mutant_styles = NONE, // SKYRAT EDIT ADD - Further outfit modification for outfits (added `mutant_styles` argument)
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 )
 
 	// SKYRAT EDIT ADDITION START - Taur-friendly uniforms and suits
@@ -1257,10 +1254,6 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	var/static/icon/cut_legs_mask = icon('icons/effects/cut.dmi', "Cut2")
 	var/static/icon/lenghten_torso_mask = icon('icons/effects/cut.dmi', "Cut3")
 	var/static/icon/lenghten_legs_mask = icon('icons/effects/cut.dmi', "Cut4")
-<<<<<<< HEAD
-=======
-
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	appearance.remove_filter(list(
 		"Cut_Torso",
 		"Cut_Legs",
@@ -1273,10 +1266,6 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 		"Monkey_Gnome_Cut_Torso",
 		"Monkey_Gnome_Cut_Legs",
 	))
-<<<<<<< HEAD
-=======
-
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	switch(get_mob_height())
 		// Don't set this one directly, use TRAIT_DWARF
 		if(MONKEY_HEIGHT_DWARF)
@@ -1376,15 +1365,6 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 					"params" = displacement_map_filter(lenghten_legs_mask, x = 0, y = 0, size = 2),
 				),
 			))
-<<<<<<< HEAD
-	// Kinda gross but because many humans overlays do not use KEEP_TOGETHER we need to manually propogate the filter
-	// Otherwise overlays, such as worn overlays on icons, won't have the filter "applied", and the effect kinda breaks
-	if(!(appearance.appearance_flags & KEEP_TOGETHER))
-		for(var/image/overlay in list() + appearance.underlays + appearance.overlays)
-			apply_height_filters(overlay)
-	return appearance
-
-=======
 
 	// Kinda gross but because many humans overlays do not use KEEP_TOGETHER we need to manually propogate the filter
 	// Otherwise overlays, such as worn overlays on icons, won't have the filter "applied", and the effect kinda breaks
@@ -1393,6 +1373,4 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 			apply_height_filters(overlay)
 
 	return appearance
-
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 #undef RESOLVE_ICON_STATE
