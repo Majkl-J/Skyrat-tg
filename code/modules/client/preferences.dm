@@ -175,7 +175,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		data["character_profiles"] = create_character_profiles()
 		tainted_character_profiles = FALSE
 
-<<<<<<< HEAD
 	//SKYRAT EDIT BEGIN
 	data["preview_selection"] = preview_pref
 
@@ -292,89 +291,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (isnull(requested_preference))
 				return FALSE
 
-=======
-	data["character_preferences"] = compile_character_preferences(user)
-
-	data["active_slot"] = default_slot
-
-	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
-		data += preference_middleware.get_ui_data(user)
-
-	return data
-
-/datum/preferences/ui_static_data(mob/user)
-	var/list/data = list()
-
-	data["character_profiles"] = create_character_profiles()
-
-	data["character_preview_view"] = character_preview_view.assigned_map
-	data["overflow_role"] = SSjob.GetJobType(SSjob.overflow_role).title
-	data["window"] = current_window
-
-	data["content_unlocked"] = unlock_content
-
-	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
-		data += preference_middleware.get_ui_static_data(user)
-
-	return data
-
-/datum/preferences/ui_assets(mob/user)
-	var/list/assets = list(
-		get_asset_datum(/datum/asset/spritesheet/preferences),
-		get_asset_datum(/datum/asset/json/preferences),
-	)
-
-	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
-		assets += preference_middleware.get_ui_assets()
-
-	return assets
-
-/datum/preferences/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	. = ..()
-	if (.)
-		return
-
-	switch (action)
-		if ("change_slot")
-			// Save existing character
-			save_character()
-			// SAFETY: `switch_to_slot` performs sanitization on the slot number
-			switch_to_slot(params["slot"])
-			return TRUE
-		if ("remove_current_slot")
-			remove_current_slot()
-			return TRUE
-		if ("rotate")
-			character_preview_view.setDir(turn(character_preview_view.dir, -90))
-			return TRUE
-		if ("set_preference")
-			var/requested_preference_key = params["preference"]
-			var/value = params["value"]
-
-			for (var/datum/preference_middleware/preference_middleware as anything in middleware)
-				if (preference_middleware.pre_set_preference(usr, requested_preference_key, value))
-					return TRUE
-
-			var/datum/preference/requested_preference = GLOB.preference_entries_by_key[requested_preference_key]
-			if (isnull(requested_preference))
-				return FALSE
-
-			// SAFETY: `update_preference` performs validation checks
-			if (!update_preference(requested_preference, value))
-				return FALSE
-
-			if (istype(requested_preference, /datum/preference/name))
-				tainted_character_profiles = TRUE
-
-			return TRUE
-		if ("set_color_preference")
-			var/requested_preference_key = params["preference"]
-
-			var/datum/preference/requested_preference = GLOB.preference_entries_by_key[requested_preference_key]
-			if (isnull(requested_preference))
-				return FALSE
-
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 			if (!istype(requested_preference, /datum/preference/color))
 				return FALSE
 
@@ -395,7 +311,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				return FALSE
 
 			return TRUE
-<<<<<<< HEAD
 		//SKYRAT EDIT ADDITION
 		if("update_preview")
 			preview_pref = params["updated_preview"]
@@ -445,8 +360,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return TRUE
 		//SKYRAT EDIT END
 
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/delegation = preference_middleware.action_delegations[action]
@@ -673,28 +586,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	apply_prefs_to(character, icon_updates)
 
 /// Applies the given preferences to a human mob.
-<<<<<<< HEAD
 /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, visuals_only = FALSE)  // SKYRAT EDIT - Customization - ORIGINAL: /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
 	character.dna.features = MANDATORY_FEATURE_LIST //SKYRAT EDIT CHANGE - We need to instansiate the list with the basic features.
-=======
-/datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
-	character.dna.features = list()
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	for (var/datum/preference/preference as anything in get_preferences_in_priority_order())
 		if (preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
 
-<<<<<<< HEAD
-		preference.apply_to_human(character, read_preference(preference.type), src)
+		preference.apply_to_human(character, read_preference(preference.type), src) // SKYRAT EDIT - src
 
 	// SKYRAT EDIT ADDITION START - middleware apply human prefs
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		preference_middleware.apply_to_human(character, src, visuals_only = visuals_only)
 	// SKYRAT EDIT ADDITION END
-=======
-		preference.apply_to_human(character, read_preference(preference.type))
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	character.dna.real_name = character.real_name
 
