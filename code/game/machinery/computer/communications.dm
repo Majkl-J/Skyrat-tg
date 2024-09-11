@@ -521,20 +521,6 @@ GLOBAL_VAR_INIT(cops_arrived, FALSE)
 	else if((last_toggled + EMERGENCY_ACCESS_COOLDOWN) < world.time)
 		toggle_uses = 0 //either cooldown is done, or we just havent touched it in 30 seconds, either way reset uses
 
-/obj/machinery/computer/communications/proc/emergency_access_cooldown(mob/user)
-	if(toggle_uses == toggle_max_uses) //you have used up free uses already, do it one more time and start a cooldown
-		to_chat(user, span_warning("This was your last free use without cooldown, you will not be able to use this again for [DisplayTimeText(EMERGENCY_ACCESS_COOLDOWN)]."))
-		COOLDOWN_START(src, emergency_access_cooldown, EMERGENCY_ACCESS_COOLDOWN)
-		++toggle_uses //add a use so that this if() is false the next time you try this button
-		return FALSE
-
-	if(!COOLDOWN_FINISHED(src, emergency_access_cooldown))
-		var/time_left = DisplayTimeText(COOLDOWN_TIMELEFT(src, emergency_access_cooldown), 1)
-		to_chat(user, span_warning("Emergency Access is still in cooldown for [time_left]!"))
-		return TRUE //dont use the button, we are in cooldown
-	else if((last_toggled + EMERGENCY_ACCESS_COOLDOWN) < world.time)
-		toggle_uses = 0 //either cooldown is done, or we just havent touched it in 30 seconds, either way reset uses
-
 	++toggle_uses //add a use
 	last_toggled = world.time
 	return FALSE //if we are not in cooldown, allow using the button

@@ -78,10 +78,14 @@
 	if(!timing)
 		return PROCESS_KILL
 
-	if(REALTIMEOFDAY - activation_time >= timer_duration) // SKYRAT EDIT CHANGE: original was world.time
+	if(world.time - activation_time >= timer_duration)
 		timer_end() // open doors, reset timer, clear status screen
 	update_content()
+
 /**
+ * Update the display content.
+ */
+/obj/machinery/status_display/door_timer/proc/update_content()
 	var/time_left = time_left(seconds = TRUE)
 
 	if(time_left == 0)
@@ -100,7 +104,7 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return 0
 
-	activation_time = REALTIMEOFDAY // SKYRAT EDIT CHANGE: original was world.time
+	activation_time = world.time
 	timing = TRUE
 	begin_processing()
 
@@ -173,7 +177,7 @@
  * * seconds - Return the time in seconds if TRUE, else deciseconds.
  */
 /obj/machinery/status_display/door_timer/proc/time_left(seconds = FALSE)
-	. = max(0, timer_duration + (activation_time ? activation_time - REALTIMEOFDAY : 0)) // SKYRAT EDIT CHANGE, Original: . = max(0, timer_duration + (activation_time ? activation_time - world.time : 0))
+	. = max(0, timer_duration + (activation_time ? activation_time - world.time : 0))
 	if(seconds)
 		. /= (1 SECONDS)
 
@@ -225,7 +229,11 @@
 
 	if(!allowed(usr))
 		to_chat(usr, span_warning("Access denied."))
+		return FALSE
+
+	switch(action)
 		if("time")
+			var/value = text2num(params["adjust"])
 			if(value)
 				. = set_timer(timer_duration + value)
 				user.investigate_log("modified the timer by [value/10] seconds for cell [id], currently [time_left(seconds = TRUE)]", INVESTIGATE_RECORDS)
@@ -261,7 +269,7 @@
 			user.investigate_log("set cell [id]'s timer to [preset_time/10] seconds", INVESTIGATE_RECORDS)
 			user.log_message("set cell [id]'s timer to [preset_time/10] seconds", LOG_ATTACK)
 			if(timing)
-				activation_time = REALTIMEOFDAY // SKYRAT EDIT CHANGE: original was world.time
+				activation_time = world.time
 		else
 			. = FALSE
 

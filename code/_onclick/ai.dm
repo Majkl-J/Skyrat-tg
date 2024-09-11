@@ -159,15 +159,6 @@
 /atom/proc/AICtrlShiftClick(mob/living/silicon/ai/user)
 	return
 
-/atom/proc/ai_click_alt(mob/living/silicon/ai/user)
-	SHOULD_CALL_PARENT(FALSE)
-	return
-
-/atom/proc/AIShiftClick(mob/living/silicon/ai/user)
-	return
-
-/atom/proc/AICtrlShiftClick(mob/living/silicon/ai/user)
-	return
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick(mob/living/silicon/ai/user) // Bolts doors
 	if(obj_flags & EMAGGED)

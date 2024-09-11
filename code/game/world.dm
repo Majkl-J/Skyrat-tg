@@ -354,24 +354,6 @@ GLOBAL_VAR(tracy_log)
 	auxcleanup()
 	. = ..()
 
-	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
-	auxcleanup()
-
-	TgsReboot() // TGS can decide to kill us right here, so it's important to do it last
-
-	..()
-	#endif
-
-/world/proc/auxcleanup()
-	AUXTOOLS_FULL_SHUTDOWN(AUXLUA)
-	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if (debug_server)
-		call_ext(debug_server, "auxtools_shutdown")()
-
-/world/Del()
-	auxcleanup()
-	. = ..()
-
 /* SKYRAT EDIT REMOVAL - OVERRIDEN
 /world/proc/update_status()
 

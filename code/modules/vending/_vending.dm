@@ -988,7 +988,7 @@ GLOBAL_LIST_EMPTY(vending_machines_to_restock)
 	var/list/weighted_crits = list()
 
 	weighted_crits[CRUSH_CRIT_SHATTER_LEGS] = 100
-	weighted_crits[CRUSH_CRIT_PARAPALEGIC] = 80
+	weighted_crits[CRUSH_CRIT_PARAPLEGIC] = 80
 	//weighted_crits[CRUSH_CRIT_HEADGIB] = 20 // SKYRAT EDIT REMOVAL
 	weighted_crits[CRUSH_CRIT_SQUISH_LIMB] = 80 // SKYRAT EDIT CHANGE - ORIGINAL: weighted_crits[CRUSH_CRIT_SQUISH_LIMB] = 100
 
