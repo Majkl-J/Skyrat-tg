@@ -9,11 +9,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Ensures that we always load the last used save, QOL
 	var/default_slot = 1
 	/// The maximum number of slots we're allowed to contain
-<<<<<<< HEAD
 	var/max_save_slots = 30 //SKYRAT EDIT - ORIGINAL 3
-=======
-	var/max_save_slots = 3
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 
 	/// Bitflags for communications that are muted
 	var/muted = NONE
@@ -96,13 +92,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	QDEL_NULL(character_preview_view)
 	QDEL_LIST(middleware)
 	value_cache = null
-<<<<<<< HEAD
 	//SKYRAT EDIT ADDITION
 	if(pref_species)
 		QDEL_NULL(pref_species)
 	//SKYRAT EDIT END
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	return ..()
 
 /datum/preferences/New(client/parent)
@@ -117,14 +110,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(load_and_save && !fexists(path))
 			try_savefile_type_migration()
 		unlock_content = !!parent.IsByondMember()
-<<<<<<< HEAD
 		donator_status = !!GLOB.donator_list[parent.ckey] //SKYRAT EDIT ADD - DONATOR CHECK
 		if(unlock_content || donator_status) //SKYRAT EDIT - ADD DONATOR CHECK
 			max_save_slots = 50 //SKYRAT EDIT - ORIGINAL 8
-=======
-		if(unlock_content)
-			max_save_slots = 8
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	else
 		CRASH("attempted to create a preferences datum without a client or mock!")
 	load_savefile()

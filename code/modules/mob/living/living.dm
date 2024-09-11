@@ -1942,12 +1942,7 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	if(isliving(dropping))
 		var/mob/living/M = dropping
 		if(M.can_be_held && U.pulling == M)
-<<<<<<< HEAD
 			return M.mob_try_pickup(U) //SKYRAT EDIT CHANGE //blame kevinz dont open the mobs inventory if you are picking them up
-=======
-			M.mob_try_pickup(U)//blame kevinz
-			return//dont open the mobs inventory if you are picking them up
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 	return ..()
 
 /mob/living/proc/mob_pickup(mob/living/user)
@@ -2548,13 +2543,10 @@ GLOBAL_LIST_EMPTY(fire_appearances)
 	body_position = new_value
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_BODY_POSITION, new_value, .)
 	if(new_value == LYING_DOWN) // From standing to lying down.
-<<<<<<< HEAD
 		//SKYRAT EDIT ADDITION BEGIN - SOUNDS
 		if(has_gravity())
 			playsound(src, "bodyfall", 50, TRUE)
 		//SKYRAT EDIT END
-=======
->>>>>>> 4b4ae0958fe6b5d511ee6e24a5087599f61d70a3
 		on_lying_down()
 	else // From lying down to standing up.
 		on_standing_up()
