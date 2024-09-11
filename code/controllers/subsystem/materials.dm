@@ -34,9 +34,6 @@ SUBSYSTEM_DEF(materials)
 	///A list of dimensional themes used by the dimensional anomaly and other things, most of which require materials to function.
 	var/list/datum/dimension_theme/dimensional_themes
 
-	///A list of dimensional themes used by the dimensional anomaly and other things, most of which require materials to function.
-	var/list/datum/dimension_theme/dimensional_themes
-
 ///Ran on initialize, populated the materials and materials_by_category dictionaries with their appropriate vars (See these variables for more info)
 /datum/controller/subsystem/materials/proc/InitializeMaterials()
 	materials = list()
