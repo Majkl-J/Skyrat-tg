@@ -19,10 +19,7 @@
 
 	prepare_huds() //Prevents a nasty runtime on human init
 
-/mob/living/carbon/human/proc/setup_mood()
-	if (CONFIG_GET(flag/disable_human_mood))
-		return
-	mob_mood = new /datum/mood(src)
+	. = ..()
 
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)

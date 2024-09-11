@@ -173,13 +173,6 @@
 
 	add_radio(src, frequency)
 
-///goes through all radio channels we should be listening for and readds them to the global list
-/obj/item/radio/proc/readd_listening_radio_channels()
-	for(var/channel_name in channels)
-		add_radio(src, GLOB.radiochannels[channel_name])
-
-	add_radio(src, frequency)
-
 /obj/item/radio/proc/make_syndie() // Turns normal radios into Syndicate radios!
 	qdel(keyslot)
 	keyslot = new /obj/item/encryptionkey/syndicate()

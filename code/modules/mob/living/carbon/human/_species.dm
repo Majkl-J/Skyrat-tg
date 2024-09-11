@@ -484,6 +484,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
  * Arguments:
  * * species_human - Human, whoever we're handling the body for
  */
+//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
+/*
 /datum/species/proc/handle_body(mob/living/carbon/human/species_human)
 	species_human.remove_overlay(BODY_LAYER)
 	if(HAS_TRAIT(species_human, TRAIT_INVISIBLE_MAN))
@@ -533,6 +535,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	species_human.apply_overlay(BODY_LAYER)
 	update_body_markings(species_human)
+*/
+//SKYRAT EDIT REMOVAL END
 
 //This exists so sprite accessories can still be per-layer without having to include that layer's
 //number in their sprite name, which causes issues when those numbers change.

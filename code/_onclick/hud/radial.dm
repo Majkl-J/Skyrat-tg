@@ -119,9 +119,6 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	///A replacement icon state for the generic radial slice bg icon. Doesn't affect the next page nor the center buttons
 	var/radial_slice_icon
 
-	///A replacement icon state for the generic radial slice bg icon. Doesn't affect the next page nor the center buttons
-	var/radial_slice_icon
-
 //If we swap to vis_contens inventory these will need a redo
 /datum/radial_menu/proc/check_screen_border(mob/user)
 	var/atom/movable/AM = anchor
