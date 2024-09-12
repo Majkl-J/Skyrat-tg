@@ -8,8 +8,6 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 
 #define ACCESS_GRANTING_COOLDOWN (30 SECONDS)
 
-#define ACCESS_GRANTING_COOLDOWN (30 SECONDS)
-
 /obj/machinery/keycard_auth
 	name = "Keycard Authentication Device"
 	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate, or to give the Janitor access to a department."
