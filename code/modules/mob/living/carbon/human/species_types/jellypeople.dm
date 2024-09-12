@@ -49,7 +49,6 @@
 	if(ishuman(new_jellyperson))
 		regenerate_limbs = new
 		regenerate_limbs.Grant(new_jellyperson)
-		update_mail_goodies(new_jellyperson)
 		alter_form = new //SKYRAT EDIT CUSTOMIZATION
 		alter_form.Grant(new_jellyperson) //SKYRAT EDIT CUSTOMIZATION
 
